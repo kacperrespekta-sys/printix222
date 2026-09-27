@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Printix | Druk 3D</title>
+    <style> 
+            :root {
+            --bg: #f4f4f4;
+            --card: #ffffff;
+            --dark: #111111;
+            --dark-2: #1d1d1d;
+            --text: #222222;
+            --muted: #666666;
+            --accent: #f6b400;
+            --light-accent: #fff4c7;
+            --border: #e7e7e7;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            color: #111;
+        }
+
+        header {
+            background: var(--dark);
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 0;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        nav {
+            display: flex;
+            gap: 28px;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: white;
+            font-size: 0.98rem;
+            opacity: 0.9;
+        }
+
+        nav a:hover {
+            opacity: 1;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #ffffff 0%, #f8f8f8 100%);
+            padding: 90px 0 70px;
+        }
+
+        .hero-wrap {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4.4rem);
+            line-height: 1.1;
+            margin: 0 0 18px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--muted);
+            margin-bottom: 28px;
+            max-width: 600px;
+        }
+
+        .buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 16px 26px;
+            border-radius: 12px;
+            font-weight: 700;
+            transition: 0.2s ease;
+        }
+
+        .button.primary {
+            background: var(--dark);
+            color: white;
+        }
+
+        .button.secondary {
+            background: var(--light-accent);
+            color: var(--dark);
+            border: 1px solid #f2d06b;
+        }
+
+        .button:hover {
+            transform: translateY(-2px);
+        }
+
+        .hero-visual {
+            background: linear-gradient(180deg, #111111, #2c2c2c);
+            border-radius: 28px;
+            padding: 28px;
+            min-height: 420px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mockup {
+            background: linear-gradient(145deg, #f6b400, #ffd54a);
+            width: 100%;
+            max-width: 360px;
+            border-radius: 26px;
+            padding: 28px 20px 18px;
+            box-shadow: 0 18px 45px rgba(0, 0, 0, 0.25);
+            color: #111;
+        }
+
+        .mockup-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 18px;
+            font-weight: 700;
+        }
+
+        .mockup-shape {
+            height: 200px;
+            border-radius: 18px;
+            background: linear-gradient(135deg, #ffffff, #f2f2f2);
+            border: 3px solid rgba(0, 0, 0, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mockup-shape::before {
+            content: "";
+            position: absolute;
+            inset: 28px 50px;
+            border: 6px solid #111;
+            border-radius: 18px;
+            transform: rotate(-12deg);
+        }
+.social-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    max-width: 1100px;
+    margin: 50px auto;
+    padding: 20px;
+}
+
+.social {
+    height: 95px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    padding: 0 45px;
+    box-sizing: border-box;
+
+    color: white;
+    text-decoration: none;
+    font-size: 30px;
+    font-family: Arial, sans-serif;
+
+    transition: transform 0.2s, opacity 0.2s;
+}
+
+.social i {
+    width: 55px;
+    font-size: 38px;
+}
+
+.social:hover {
+    transform: scale(1.03);
+    opacity: 0.9;
+}
+
+.tiktok {
+    background: #000;
+}
+
+.instagram {
+    background: #d62976;
+}
+
+.youtube {
+    background: #ff3026;
+}
+
+.discord {
+    background: #5865df;
+}
+
+.rosa {
+    background: #962d3d;
+}
+
+.minecraft {
+    background: #5865df;
+}
+
+
+
+
+
+
+        .mockup-shape::after {
+            content: "";
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            background: rgba(17, 17, 17, 0.08);
+            border-radius: 50%;
+            bottom: -25px;
+            right: -10px;
+        }
+
+        .stats {
+            padding: 25px 0 10px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+            margin-top: 10px;
+        }
+
+        .stat {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 24px 20px;
+            text-align: center;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.03);
+        }
+
+        .stat strong {
+            display: block;
+            font-size: clamp(1.6rem, 2vw, 2.4rem);
+            margin-bottom: 6px;
+        }
+
+        .section {
+            padding: 90px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-header h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin: 0 0 12px;
+        }
+
+        .section-header p {
+            color: var(--muted);
+            font-size: 1.08rem;
+            margin: 0 auto;
+            max-width: 700px;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .product-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.04);
+        }
+
+        .product-image {
+            height: 220px;
+            background: linear-gradient(135deg, #ededed, #d9d9d9);
+            position: relative;
+        }
+
+        .product-image::before {
+            content: "";
+            position: absolute;
+            inset: 40px 60px;
+            background: linear-gradient(145deg, #111, #444);
+            border-radius: 18px;
+            transform: rotate(-15deg);
+        }
+
+        .product-image.two {
+            background: linear-gradient(135deg, #fff8dc, #f7e7a5);
+        }
+
+        .product-image.three {
+            background: linear-gradient(135deg, #eef8ff, #d8ecff);
+        }
+
+        .product-content {
+            padding: 24px 20px 26px;
+        }
+
+        .product-content h3 {
+            margin: 0 0 10px;
+            font-size: 1.5rem;
+        }
+
+        .product-content p {
+            margin: 0 0 18px;
+            color: var(--muted);
+        }
+
+        .price {
+            display: inline-block;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .about {
+            background: #111111;
+            color: white;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+            align-items: center;
+        }
+
+        .about-box {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 22px;
+            padding: 28px;
+        }
+
+        .about-box h3 {
+            font-size: 2rem;
+            margin-top: 0;
+        }
+
+        .about-box p {
+            color: #d0d0d0;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+            margin-top: 24px;
+        }
+
+        .feature {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 18px;
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .contact {
+            background: linear-gradient(180deg, #f8f8f8, #ffffff);
+        }
+
+        .contact-box {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 30px;
+            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.04);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 25px;
+        }
+
+        .contact-box p {
+            color: var(--muted);
+        }
+
+        .contact-list {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0 0;
+        }
+
+        .contact-list li {
+            margin-bottom: 14px;
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 25px 0;
+        }
+
+        @media (max-width: 860px) {
+            .hero-wrap,
+            .about-grid,
+            .contact-grid,
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav {
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            nav {
+                justify-content: center;
+            }
+
+            .hero {
+                padding-top: 60px;
+            }
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="container nav">
+        <div class="logo">PRINTIX222</div>
+        <nav>
+            <a href="#start">Start</a>
+            <a href="#produkty">Produkty</a>
+            <a href="#o-nas">O nas</a>
+            <a href="#kontakt">Kontakt</a>
+    </nav>     </div>  
+</div>
+
+</header>
+
+<section id="start" class="hero">
+    <div class="container hero-wrap">
+        <div>
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">                       
+
+<p>
+                     </p>
+            </div>
+        </div>                   
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="stats">
+    <div class="container stats-grid">
+        <div class="stat">
+           <strong>0</strong>
+            <span>zrealizowanych projektów</span>
+        </div>
+        <div class="stat">
+            <strong>0%</strong>
+            <span>zadowolonych klientów</span>
+        </div>
+        <div class="stat">
+            <strong>24h</strong>
+            <span>czas realizacji</span>
+	  </div>
+       	<div class="informację">
+	</div>
+    </div>
+</section>
+
+<section id="produkty" class="section">
+    <div class="container">
+        <div class="section-header">
+            <h2>Nasze produkty</h2>
+            <p>
+                </p>
+        </div>
+
+                      <div class="product-content">
+                       </div>
+            </article>
+
+                        <div class="product-content"
+                       </div>
+            </article>
+                   <div class="product-content">
+                      </div>
+            </article>
+        </div>
+    </div>
+</section>
+
+<section id="o-nas" class="section about">
+    <div class="container about-grid">
+        <div class="about-box">
+            <h3> INFORMACJĘ❤️.</h3>
+            <p>
+            </p>
+
+            <div class="features">
+                <div class="feature">
+                    <strong>🎖️NAJLEPSZA🏆JAKOŚĆ🎖️</strong>
+                    <div> |Dzięki drukarkom Bambu Lab'i. Filamętami od ROSY 3D nasze produkty są wysokiej jakości oraz. Świetnie wykonane!^_^</div>
+                             </div>
+                <div class="feature">
+                    <strong>🚚SZYBKA🔔DOSTAWA🚚</strong>
+				                    <div>|Dostawa zaledwie 1-3dni robocze od momentu zamówienia!(●'◡'●).</div>
+                </div>
+                <div class="feature">
+                    <strong>🎀GRATISY❤️ DO ❤️ZAMÓWIEŃ🎀</strong>
+                    <div>|Z empati do naszych klientów dorzucamy wybrane przez nas upominki. Wydrukowane z drukarek 3D:-) </div>
+                </div>
+                <div class="feature">
+                    <strong>📦MYSTERY BOXY📦</strong>
+                    <div>|Od 100zł         200zł          300zł         500zł.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="about-box">
+            <h3> Dlaczego warto robić zakupy u mnie?</h3>
+			|Każdy i brelok i haft, który tworzę i drukukję✌️
+!JEST WYJĄTKOWYM WYBOREM DLA CIEBIE!Drukarki,Filamenty są |najwyszej jakości aby zapewnić trwałość i precyzję wykonania.Każdy produkt jest dobrze sprawdzany przed wysyłką abyś |mógł bawić i cieszyć się nim przed długie lata.^_^
+            <p>	            
+</p>	
+
+            
+<a href="#kontakt" class="button primary">Umów konsultację</a>
+        </div>
+    </div>
+</section>
+
+<section id="kontakt" class="section contact">
+    <div class="container">
+        <div class="section-header">
+            <h2>Kontakt</h2>
+            <p>Skontaktuj się z nami i zapytaj o indywidualną wycenę lub realizację projektu.</p>
+        </div>
+
+        <div class="contact-box contact-grid">
+            <div>
+                <h3></h3>
+                <p>
+                    
+                </p>
+            </div>
+
+            <div>
+   <div class="social-buttons">
+
+  <a class="social tiktok" href="https://www.tiktok.com/@kqcper_ekk?is_from_webapp=1&sender_device=pc" target="_blank">
+    <i class="fa-brands fa-tiktok"></i>
+    <span>TikTok</span>
+  </a>
+  <a class="social youtube" href="https://youtube.com/@kacperrespekta?si=2hhwKE7KDGWTWxD8" target="_blank">
+    <i class="fa-brands fa-youtube"></i>
+    <span>YouTube</span>
+  </a>
+
+  
+  <a class="social rosa" href="https://www.rosa3d.pl/" target="_blank">
+    <i class="fa-solid fa-link"></i>
+    <span>ROSA 3D</span>
+  </a>
+
+ 
+
+</div>             <ul class="contact-list">
+                    <li>Email: kacperrespekta@gmail.com</li>
+                    <li>Telefon: +48 515 352 375</li>
+                    <li>Adres: ul.Dąbrowa Nowy Sącz</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    © 2026 Printix 👌(❁´◡`❁)
+</footer>
+
+</body>
+</html>
